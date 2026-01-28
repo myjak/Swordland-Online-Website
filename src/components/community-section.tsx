@@ -11,7 +11,6 @@ export function CommunitySection() {
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/4 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
         <div className="absolute right-1/5 bottom-1/4 h-[220px] w-[320px] rounded-full bg-card/70 blur-[100px] opacity-40" />
-        {/* Removed grid overlay background */}
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
@@ -29,65 +28,53 @@ export function CommunitySection() {
           </p>
         </div>
 
-        {/* Dynamically centered socials grid */}
+        {/* Evenly spaced socials grid, up to 4 on a row */}
         <div className="mb-20 flex justify-center">
           <div
-            className={`
-              grid gap-8
-              w-full max-w-4xl
-              place-items-center
-              mx-auto
-              justify-center
-              ${
-                socials.length === 1
-                  ? "grid-cols-1"
-                  : socials.length === 2
-                    ? "grid-cols-2"
-                    : socials.length === 3
-                      ? "sm:grid-cols-2 md:grid-cols-3"
-                      : "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-              }
-            `}
+            className="grid w-full max-w-4xl mx-auto justify-center place-items-center gap-8"
             style={{
-              // Fallback for very large sets, or you could opt for auto-fit/minmax
-              gridTemplateColumns:
-                socials.length < 5
-                  ? undefined
-                  : "repeat(auto-fit, minmax(250px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              // At most 4 columns for >=880px, else fallback to fewer
+              // Always maximum of 4 columns per row
+              // Responsive handling for 1-4 cards wide
+              maxWidth: "100%",
             }}
           >
-            {socials.map(
-              ({ icon: Icon, label, href, description, accent, pill }) => (
-                <Card
-                  key={label}
-                  className="relative flex flex-col border border-border bg-card shadow-lg overflow-hidden items-center justify-center p-0"
-                  style={{
-                    minHeight: 320,
-                    borderRadius: 0,
-                  }}
-                >
-                  {/* Soft background accent */}
-                  <div className="pointer-events-none absolute inset-0 z-0">
+            {socials.map(({ icon: Icon, label, href, description }) => (
+              <Card
+                key={label}
+                className="relative flex flex-col border border-border bg-card shadow-lg overflow-hidden items-center justify-center p-0"
+                style={{
+                  minHeight: 320,
+                  borderRadius: 0,
+                  width: "100%",
+                  maxWidth: 320,
+                }}
+              >
+                <div className="pointer-events-none absolute inset-0 z-0"></div>
+                <CardContent className="flex flex-col items-center justify-center py-10 px-7 relative z-10 w-full p-0">
+                  <div className="w-full px-5 flex flex-col items-center gap-2">
+                    {/* Icon badge */}
                     <div
-                      className={`absolute left-1/2 top-6 h-[70px] w-[70px] -translate-x-1/2 rounded-full blur-[50px] opacity-30 bg-linear-to-r ${accent}`}
-                    />
-                  </div>
-                  <CardContent className="flex flex-col items-center justify-center py-10 px-7 relative z-10 w-full p-0">
-                    {/* Icon badge, not rounded */}
-                    <div
-                      className="mb-7 flex h-16 w-16 items-center justify-center border-2 border-primary/40 bg-primary/10 shadow"
+                      className="flex h-16 w-16 items-center justify-center border-2 border-primary/40 bg-primary/10 shadow mb-5"
                       style={{ borderRadius: 0 }}
                     >
                       <Icon className="h-8 w-8 text-primary" />
                     </div>
-                    <span
-                      className="mb-2 inline-block bg-primary/10 text-xs font-bold text-primary px-3 py-1 uppercase tracking-wide"
-                      style={{ borderRadius: 0 }}
-                    >
-                      {pill}
-                    </span>
-                    <h3 className="mb-1 font-display text-xl font-extrabold text-primary tracking-tight drop-shadow text-center">
-                      {label}
+                    {/* Label - not rounded, style and spacing updated */}
+                    <h3 className="w-full flex flex-col items-center mb-1">
+                      <span
+                        className="inline-block bg-primary text-[0.95rem] font-bold text-white px-4 py-1.5 uppercase tracking-wider shadow-md border border-white/20 outline outline-primary/50 -outline-offset-2 transition-all duration-200 font-display"
+                        style={{
+                          borderRadius: 0,
+                          letterSpacing: 2,
+                          filter: "drop-shadow(0 2px 8px rgba(98,84,243,0.09))",
+                          textShadow: "0 1px 6px rgba(0,0,0,0.08)",
+                          marginTop: 0,
+                        }}
+                      >
+                        {label}
+                      </span>
                     </h3>
                     <p className="text-sm text-muted-foreground text-center mb-4">
                       {description}
@@ -97,16 +84,16 @@ export function CommunitySection() {
                         variant="default"
                         asChild
                         size="sm"
-                        className="px-5 py-1.5 mt-2 bg-primary shadow-primary/30 shadow-lg hover:bg-primary/90 transition"
+                        className="flex items-center gap-2 px-5 py-1.5 mt-1 bg-primary shadow-primary/30 shadow-lg hover:bg-primary/90 transition font-semibold"
                         style={{
                           borderRadius: 0,
                           minWidth: 120,
                           width: "auto",
                         }}
                       >
-                        <Link href={href}>
-                          <MessageCircle className="mr-2 h-4 w-4" />
-                          Join Discord
+                        <Link href={href} className="flex items-center gap-2">
+                          <MessageCircle className="h-4 w-4" />
+                          <span>Join Discord</span>
                         </Link>
                       </Button>
                     ) : (
@@ -114,31 +101,29 @@ export function CommunitySection() {
                         variant="outline"
                         asChild
                         size="sm"
-                        className="px-5 py-1.5 mt-2 border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:text-primary"
+                        className="flex items-center gap-2 px-5 py-1.5 mt-1 border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:text-primary font-semibold"
                         style={{
                           borderRadius: 0,
                           minWidth: 120,
                           width: "auto",
                         }}
                       >
-                        <Link href={href}>
+                        <Link href={href} className="flex items-center gap-2">
                           {label === "Twitter" && (
-                            <Twitter className="mr-2 h-4 w-4" />
+                            <Twitter className="h-4 w-4" />
                           )}
                           {label === "YouTube" && (
-                            <Youtube className="mr-2 h-4 w-4" />
+                            <Youtube className="h-4 w-4" />
                           )}
-                          {label === "GitHub" && (
-                            <Github className="mr-2 h-4 w-4" />
-                          )}
-                          Visit {label}
+                          {label === "GitHub" && <Github className="h-4 w-4" />}
+                          <span>Visit {label}</span>
                         </Link>
                       </Button>
                     )}
-                  </CardContent>
-                </Card>
-              ),
-            )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </div>

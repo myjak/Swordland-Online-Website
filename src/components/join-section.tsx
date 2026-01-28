@@ -1,9 +1,27 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/src/components/ui/button";
 import { ExternalLink, Server } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/src/components/ui/separator";
+import { Card } from "@/src/components/ui/card";
+
+// Set the server IP here to easily update it everywhere
+const SERVER_IP = "play.swordland.online";
 
 export function JoinSection() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(SERVER_IP);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      // Handle error if needed
+    }
+  };
+
   return (
     <section id="join" className="relative py-24">
       {/* Background */}
@@ -24,26 +42,35 @@ export function JoinSection() {
           </p>
         </div>
 
-        {/* Join Card */}
-        <div className="relative grid gap-0 md:grid-cols-[1fr_auto_1fr] border border-border bg-card shadow-lg overflow-hidden">
+        {/* Join Card as a Card component with no rounding */}
+        <Card className="relative grid gap-0 md:grid-cols-[1fr_auto_1fr] border border-border bg-card shadow-lg overflow-hidden p-0 rounded-none">
           {/* Server Info */}
           <div className="flex flex-col items-center md:items-start justify-center px-8 py-10 bg-card/90">
             <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/40 bg-primary/10 shadow">
               <Server className="h-8 w-8 text-primary" />
             </div>
             <h3 className="mb-2 font-display text-2xl font-extrabold text-primary tracking-tight drop-shadow text-center md:text-left">
-              play.swordland.online
+              {SERVER_IP}
             </h3>
             <Button
               variant="default"
-              asChild
               size="lg"
               className="px-8 py-2 mt-4 mb-6 bg-primary shadow-primary/30 shadow-lg hover:bg-primary/90 transition w-full md:w-auto"
+              onClick={handleCopy}
+              type="button"
+              aria-label={`Copy server IP ${SERVER_IP}`}
             >
-              <Link href="#">
-                Connect Now
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </Link>
+              {copied ? (
+                <>
+                  Copied!
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  Connect Now
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </>
+              )}
             </Button>
             <p className="text-xs text-emerald-500 font-medium mb-2 text-center md:text-left tracking-wide">
               <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
@@ -85,7 +112,7 @@ export function JoinSection() {
               <li>
                 Add this server address:{" "}
                 <span className="font-semibold text-card-foreground bg-primary/10 rounded px-1 py-0.5">
-                  play.swordland.online
+                  {SERVER_IP}
                 </span>
               </li>
               <li>
@@ -97,7 +124,7 @@ export function JoinSection() {
               </li>
             </ol>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

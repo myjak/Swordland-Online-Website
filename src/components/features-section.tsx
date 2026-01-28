@@ -1,4 +1,5 @@
 import { Zap, Swords, Trophy, Users, Shield, Target } from "lucide-react";
+import { Card, CardContent } from "@/src/components/ui/card";
 
 // Features data
 const features = [
@@ -88,9 +89,9 @@ export function FeaturesSection() {
         {/* Compact Features Grid */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
           {features.map(({ icon: Icon, pill, title, description, accent }) => (
-            <div
+            <Card
               key={title}
-              className="relative flex flex-col border border-border bg-card shadow group p-5 items-center justify-center hover:border-primary transition"
+              className="relative flex flex-col items-center justify-center group p-5 border-primary/20 hover:border-primary transition"
               style={{
                 borderRadius: 0,
                 minHeight: 0,
@@ -99,32 +100,34 @@ export function FeaturesSection() {
               {/* Soft background accent */}
               <div className="pointer-events-none absolute inset-0">
                 <div
-                  className={`absolute left-1/2 top-5 h-[46px] w-[46px] -translate-x-1/2 rounded-full blur-[25px] opacity-25 bg-linear-to-r ${accent}`}
+                  className={`absolute left-1/2 top-5 h-[46px] w-[46px] -translate-x-1/2 rounded-full blur-[25px] opacity-25 ${accent.startsWith("from-") ? `bg-gradient-to-r ${accent}` : accent}`}
                 />
               </div>
-              {/* Icon */}
-              <div
-                className="mb-3 flex h-10 w-10 items-center justify-center border-2 border-primary/40 bg-primary/10 shadow relative z-10"
-                style={{ borderRadius: 0 }}
-              >
-                <Icon className="h-5 w-5 text-primary" />
-              </div>
-              {/* Pill */}
-              <span
-                className="mb-1 inline-block bg-primary/10 text-[10px] font-bold text-primary px-2 py-0.5 uppercase tracking-wide"
-                style={{ borderRadius: 0 }}
-              >
-                {pill}
-              </span>
-              {/* Title */}
-              <h3 className="mb-0.5 font-display text-base font-extrabold text-primary tracking-tight drop-shadow text-center">
-                {title}
-              </h3>
-              {/* Description */}
-              <p className="text-xs text-muted-foreground text-center leading-normal">
-                {description}
-              </p>
-            </div>
+              <CardContent className="flex flex-col items-center justify-center p-0 w-full">
+                {/* Icon */}
+                <div
+                  className="mb-3 flex h-10 w-10 items-center justify-center border-2 border-primary/40 bg-primary/10 shadow relative z-10"
+                  style={{ borderRadius: 0 }}
+                >
+                  <Icon className="h-5 w-5 text-primary" />
+                </div>
+                {/* Pill */}
+                <span
+                  className="mb-1 inline-block bg-primary/10 text-[10px] font-bold text-primary px-2 py-0.5 uppercase tracking-wide"
+                  style={{ borderRadius: 0 }}
+                >
+                  {pill}
+                </span>
+                {/* Title */}
+                <h3 className="mb-0.5 font-display text-base font-extrabold text-primary tracking-tight drop-shadow text-center">
+                  {title}
+                </h3>
+                {/* Description */}
+                <p className="text-xs text-muted-foreground text-center leading-normal">
+                  {description}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

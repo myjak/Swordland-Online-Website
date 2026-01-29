@@ -4,7 +4,7 @@ export const socials = [
   {
     icon: MessageCircle,
     label: "Discord",
-    href: "#",
+    href: "https://discord.gg/9gCkhkYQQ7",
     description: "Meet 5,000+ Swordland players & devs",
     accent: "from-blue-500 via-indigo-500 to-purple-600",
     pill: "Active",

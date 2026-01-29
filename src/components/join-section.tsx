@@ -7,7 +7,7 @@ import { Separator } from "@/src/components/ui/separator";
 import { Card } from "@/src/components/ui/card";
 
 // Set the server IP here to easily update it everywhere
-const SERVER_IP = "play.swordland.online";
+const SERVER_IP = "*********************";
 
 export function JoinSection() {
   const [copied, setCopied] = useState(false);

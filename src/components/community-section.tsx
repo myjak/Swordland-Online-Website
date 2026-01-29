@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { MessageCircle, Twitter, Youtube, Github } from "lucide-react";
 import { Card, CardContent } from "@/src/components/ui/card";
@@ -79,47 +78,54 @@ export function CommunitySection() {
                     <p className="text-sm text-muted-foreground text-center mb-4">
                       {description}
                     </p>
-                    {label === "Discord" ? (
-                      <Button
-                        variant="default"
-                        asChild
-                        size="sm"
-                        className="flex items-center gap-2 px-5 py-1.5 mt-1 bg-primary shadow-primary/30 shadow-lg hover:bg-primary/90 transition font-semibold"
-                        style={{
-                          borderRadius: 0,
-                          minWidth: 120,
-                          width: "auto",
-                        }}
+                    {/* All buttons now ensure links open in a new tab */}
+                    <Button
+                      variant={label === "Discord" ? "default" : "outline"}
+                      asChild
+                      size="sm"
+                      className={
+                        label === "Discord"
+                          ? "flex items-center gap-2 px-5 py-1.5 mt-1 bg-primary shadow-primary/30 shadow-lg hover:bg-primary/90 transition font-semibold"
+                          : "flex items-center gap-2 px-5 py-1.5 mt-1 border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:text-primary font-semibold"
+                      }
+                      style={{
+                        borderRadius: 0,
+                        minWidth: 120,
+                        width: "auto",
+                      }}
+                    >
+                      <a
+                        href={href}
+                        className="flex items-center gap-2"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <Link href={href} className="flex items-center gap-2">
-                          <MessageCircle className="h-4 w-4" />
-                          <span>Join Discord</span>
-                        </Link>
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        asChild
-                        size="sm"
-                        className="flex items-center gap-2 px-5 py-1.5 mt-1 border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:text-primary font-semibold"
-                        style={{
-                          borderRadius: 0,
-                          minWidth: 120,
-                          width: "auto",
-                        }}
-                      >
-                        <Link href={href} className="flex items-center gap-2">
-                          {label === "Twitter" && (
+                        {label === "Discord" && (
+                          <>
+                            <MessageCircle className="h-4 w-4" />
+                            <span>Join Discord</span>
+                          </>
+                        )}
+                        {label === "Twitter" && (
+                          <>
                             <Twitter className="h-4 w-4" />
-                          )}
-                          {label === "YouTube" && (
+                            <span>Visit {label}</span>
+                          </>
+                        )}
+                        {label === "YouTube" && (
+                          <>
                             <Youtube className="h-4 w-4" />
-                          )}
-                          {label === "GitHub" && <Github className="h-4 w-4" />}
-                          <span>Visit {label}</span>
-                        </Link>
-                      </Button>
-                    )}
+                            <span>Visit {label}</span>
+                          </>
+                        )}
+                        {label === "GitHub" && (
+                          <>
+                            <Github className="h-4 w-4" />
+                            <span>Visit {label}</span>
+                          </>
+                        )}
+                      </a>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

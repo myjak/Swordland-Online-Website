@@ -1,23 +1,47 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import { ChevronRight, Sparkles } from "lucide-react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/src/components/ui/tooltip";
+import { Card, CardContent } from "./ui/card";
 
-export function HeroSection() {
+const STATS = [
+  {
+    value: "100+",
+    label: "Unique Skills",
+    tooltip:
+      "Discover and master over 100 different combat abilities—experiment, combine, and develop your own fighting style.",
+  },
+  {
+    value: "100",
+    label: "Floors",
+    tooltip:
+      "Progress through the legendary 100 floors of Aincrad, each with unique biomes, dungeons, and challenges.",
+  },
+  {
+    value: "50+",
+    label: "Boss Fights",
+    tooltip:
+      "Face off against powerful Floor Bosses, each with distinct mechanics, attacks, and team strategies.",
+  },
+  {
+    value: "∞",
+    label: "Adventures",
+    tooltip:
+      "Endless adventures await: explore, craft, build, and team up for quests and events in an ever-expanding world.",
+  },
+];
+
+export function HeroSection({ stats = STATS }: { stats?: typeof STATS }) {
   return (
     <section className="relative py-28 flex flex-col items-center justify-center min-h-[80vh] overflow-hidden">
       {/* Soft BG effects */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute left-1/2 top-1/4 h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-primary/10 blur-[130px]" />
         <div className="absolute right-1/5 bottom-1/4 h-[260px] w-[440px] rounded-full bg-card/80 blur-[80px] opacity-30" />
-        {/* Grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
-              linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: "62px 62px",
-          }}
-        />
       </div>
 
       {/* Content */}
@@ -72,28 +96,37 @@ export function HeroSection() {
           </Button>
         </div>
 
-        {/* Stats */}
+        {/* Stats as Cards */}
         <div
-          className="w-full max-w-2xl border border-primary/15 bg-card grid grid-cols-2 md:grid-cols-4 gap-6 py-7 px-2 shadow-lg"
+          className="w-full max-w-2xl grid grid-cols-2 md:grid-cols-4 gap-6 py-7 px-2"
           style={{ borderRadius: 0 }}
         >
-          {[
-            { value: "100+", label: "Unique Skills" },
-            { value: "100", label: "Floors" },
-            { value: "50+", label: "Boss Fights" },
-            { value: "∞", label: "Adventures" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="flex flex-col items-center justify-center"
-            >
-              <div className="font-display text-3xl md:text-4xl font-bold text-primary drop-shadow">
-                {stat.value}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground mt-2 font-semibold uppercase tracking-wide">
-                {stat.label}
-              </div>
-            </div>
+          {(stats ?? STATS).map((stat) => (
+            <Tooltip key={stat.label}>
+              <TooltipTrigger asChild>
+                <Card
+                  className="flex flex-col items-center justify-center cursor-help border-primary/30 bg-card transition-shadow hover:shadow-lg py-5 px-4"
+                  tabIndex={0}
+                  aria-label={stat.tooltip}
+                  style={{ borderRadius: 0 }}
+                >
+                  <CardContent className="flex flex-col items-center justify-center p-0">
+                    <div className="font-display text-3xl md:text-4xl font-bold text-primary drop-shadow">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs md:text-sm text-muted-foreground mt-2 font-semibold uppercase tracking-wide text-center">
+                      {stat.label}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TooltipTrigger>
+              <TooltipContent
+                sideOffset={8}
+                className="bg-card text-card-foreground border border-primary/60 shadow-lg p-3 rounded text-sm font-medium max-w-xs z-100"
+              >
+                {stat.tooltip}
+              </TooltipContent>
+            </Tooltip>
           ))}
         </div>
       </div>

@@ -12,8 +12,8 @@ const highlights = [
   {
     icon: Gamepad2,
     pill: "Play Instantly",
-    label: "Hytale Native",
-    desc: "No downloads or mods. Jump right in—all inside Hytale.",
+    label: "Vanilla Friendly",
+    desc: "With mods and plugins, we will come closer to the original SAO experience without losing the Hytale feeling and overall experience.",
     accent: "from-green-300 to-sky-400",
   },
   {
@@ -53,19 +53,20 @@ export function AboutSection() {
             >
               About
             </div>
-            <h2 className="mb-5 font-display text-3xl font-bold tracking-tight text-card md:text-4xl">
-              What is{" "}
+            <h2 className="mb-5 font-display text-2xl font-bold tracking-tight text-card md:text-3xl">
+              WHAT IS{" "}
               <span className="text-primary drop-shadow-sm">
-                Swordland Online?
+                SWORDLAND ONLINE?
               </span>
             </h2>
             <p className="mb-6 max-w-2xl text-balance text-card/70 text-lg">
               Swordland Online is a passion project bringing the world of{" "}
-              <span className="font-semibold text-yellow-400">
+              <span className="font-semibold text-primary-text">
                 Sword Art Online
               </span>{" "}
-              into Hytale. Explore the legendary floating castle of Aincrad –
-              all 100 floors, each with unique monsters and fierce bosses.
+              into Hytale. Explore a brand new floating castle called AinLand –
+              10 Floors instead of the 100 floors from the original Aincrad,
+              compressed but full of life and challenges!
             </p>
             <p className="mb-6 max-w-2xl text-balance text-card/70 text-base">
               Experience our custom skill system: master sword techniques, chain

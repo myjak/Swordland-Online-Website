@@ -8,6 +8,7 @@ export const socials = [
     description: "Meet 5,000+ Swordland players & devs",
     accent: "from-blue-500 via-indigo-500 to-purple-600",
     pill: "Active",
+    button: "Join Discord",
   },
   {
     icon: X,
@@ -16,6 +17,7 @@ export const socials = [
     description: "Updates, news, & sneak peeks",
     accent: "from-blue-400 to-blue-600",
     pill: "Latest",
+    button: "Visit X",
   },
   //   {
   //     icon: Youtube,
@@ -24,6 +26,7 @@ export const socials = [
   //     description: "Watch trailers & event recaps",
   //     accent: "from-red-500 via-pink-500 to-yellow-400",
   //     pill: "Media",
+  //     button: "Visit YouTube",
   //   },
   //   {
   //     icon: Github,
@@ -32,5 +35,6 @@ export const socials = [
   //     description: "View source & contribute",
   //     accent: "from-slate-700 to-slate-900",
   //     pill: "Dev",
+  //     button: "Visit GitHub",
   //   },
 ];

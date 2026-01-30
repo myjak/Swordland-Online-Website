@@ -1,5 +1,4 @@
 import { Button } from "@/src/components/ui/button";
-import { MessageCircle, Twitter, Youtube, Github } from "lucide-react";
 import { Card, CardContent } from "@/src/components/ui/card";
 import { socials } from "../context/socials";
 
@@ -33,13 +32,10 @@ export function CommunitySection() {
             className="grid w-full max-w-4xl mx-auto justify-center place-items-center gap-8"
             style={{
               gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              // At most 4 columns for >=880px, else fallback to fewer
-              // Always maximum of 4 columns per row
-              // Responsive handling for 1-4 cards wide
               maxWidth: "100%",
             }}
           >
-            {socials.map(({ icon: Icon, label, href, description }) => (
+            {socials.map(({ icon: Icon, label, href, description, button }) => (
               <Card
                 key={label}
                 className="relative flex flex-col border border-border bg-card shadow-lg overflow-hidden items-center justify-center p-0"
@@ -58,7 +54,7 @@ export function CommunitySection() {
                       className="flex h-16 w-16 items-center justify-center border-2 border-primary/40 bg-primary/10 shadow mb-5"
                       style={{ borderRadius: 0 }}
                     >
-                      <Icon className="h-8 w-8 text-primary" />
+                      {Icon && <Icon className="h-8 w-8 text-primary" />}
                     </div>
                     {/* Label - not rounded, style and spacing updated */}
                     <h3 className="w-full flex flex-col items-center mb-1">
@@ -78,7 +74,7 @@ export function CommunitySection() {
                     <p className="text-sm text-muted-foreground text-center mb-4">
                       {description}
                     </p>
-                    {/* All buttons now ensure links open in a new tab */}
+                    {/* Dynamic button using button property from socials */}
                     <Button
                       variant={label === "Discord" ? "default" : "outline"}
                       asChild
@@ -100,30 +96,8 @@ export function CommunitySection() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {label === "Discord" && (
-                          <>
-                            <MessageCircle className="h-4 w-4" />
-                            <span>Join Discord</span>
-                          </>
-                        )}
-                        {label === "Twitter" && (
-                          <>
-                            <Twitter className="h-4 w-4" />
-                            <span>Visit {label}</span>
-                          </>
-                        )}
-                        {label === "YouTube" && (
-                          <>
-                            <Youtube className="h-4 w-4" />
-                            <span>Visit {label}</span>
-                          </>
-                        )}
-                        {label === "GitHub" && (
-                          <>
-                            <Github className="h-4 w-4" />
-                            <span>Visit {label}</span>
-                          </>
-                        )}
+                        {Icon && <Icon className="h-4 w-4" />}
+                        <span>{button ?? `Visit ${label}`}</span>
                       </a>
                     </Button>
                   </div>

@@ -10,26 +10,26 @@ import { Card, CardContent } from "./ui/card";
 
 const STATS = [
   {
-    value: "100+",
-    label: "Unique Skills",
+    value: "50+",
+    label: "NEW ITEMS",
     tooltip:
-      "Discover and master over 100 different combat abilities—experiment, combine, and develop your own fighting style.",
+      "Craft and obtain over 50 different items between weapons and armors, with distinctive visual style inspired by SAO.",
   },
   {
-    value: "100",
-    label: "Floors",
+    value: "10",
+    label: "FLOORS",
     tooltip:
-      "Progress through the legendary 100 floors of Aincrad, each with unique biomes, dungeons, and challenges.",
+      "Progress through the 10 brand new floors of AinLand, each with unique biomes, dungeons, and challenges.",
   },
   {
     value: "50+",
-    label: "Boss Fights",
+    label: "BOSS FIGHTS",
     tooltip:
       "Face off against powerful Floor Bosses, each with distinct mechanics, attacks, and team strategies.",
   },
   {
     value: "∞",
-    label: "Adventures",
+    label: "ADVENTURES",
     tooltip:
       "Endless adventures await: explore, craft, build, and team up for quests and events in an ever-expanding world.",
   },
@@ -65,11 +65,11 @@ export function HeroSection({ stats = STATS }: { stats?: typeof STATS }) {
         {/* Subtitle */}
         <p className="mx-auto mb-12 max-w-2xl text-balance text-card/70 text-lg md:text-xl leading-relaxed">
           Swordland Online brings the world of{" "}
-          <span className="font-semibold text-yellow-400">
+          <span className="font-semibold text-primary-text">
             Sword Art Online
           </span>{" "}
           to <span className="font-semibold text-primary">Hytale</span>. Master
-          sword skills, conquer bosses, and forge your legend in Aincrad.
+          sword skills, conquer bosses, and forge your legend in AniLand.
         </p>
 
         {/* CTA Buttons */}

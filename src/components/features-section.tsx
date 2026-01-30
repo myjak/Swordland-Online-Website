@@ -6,45 +6,45 @@ const features = [
   {
     icon: Zap,
     pill: "Combat",
-    title: "Skill System",
+    title: "SKILL SYSTEM",
     description:
-      "Master 100+ sword skills with dazzling effects and tactical combos.",
+      "Master a ton of sword arts with dazzling effects and tactical combos.",
     accent: "from-yellow-400 to-orange-500",
   },
   {
     icon: Trophy,
     pill: "Progression",
-    title: "Leveling & Floors",
+    title: "LEVELING & FLOORS",
     description:
-      "Ascend 100 floors! Gain XP, unlock abilities, and prove your legend.",
+      "Ascend 10 floors! Gain XP, unlock abilities, and prove your legend.",
     accent: "from-indigo-400 to-violet-700",
   },
   {
     icon: Swords,
     pill: "Bosses",
-    title: "Epic Boss Fights",
+    title: "EPIC BOSS FIGHTS",
     description:
-      "Face iconic bosses. Strategize with your guild and claim rare loot.",
+      "Face iconic bosses and brand new! Strategize with your guild and claim rare loot.",
     accent: "from-pink-500 via-red-500 to-yellow-400",
   },
   {
     icon: Target,
     pill: "PvP",
-    title: "Intense PvP",
+    title: "INTENSE PVP",
     description: "Duel rivals or join massive battles. Climb the PvP rankings.",
     accent: "from-green-400 to-cyan-500",
   },
   {
     icon: Shield,
     pill: "Co-op",
-    title: "Guilds & Parties",
+    title: "GUILDS & PARTIES",
     description: "Form guilds, party up, and conquer challenges together.",
     accent: "from-blue-400 to-purple-600",
   },
   {
     icon: Users,
     pill: "World",
-    title: "Living World",
+    title: "WORLD IN MOVEMENT",
     description: "Shape an evolving world: economy, reputation, and events.",
     accent: "from-slate-700 to-slate-900",
   },
@@ -100,7 +100,7 @@ export function FeaturesSection() {
               {/* Soft background accent */}
               <div className="pointer-events-none absolute inset-0">
                 <div
-                  className={`absolute left-1/2 top-5 h-[46px] w-[46px] -translate-x-1/2 rounded-full blur-[25px] opacity-25 ${accent.startsWith("from-") ? `bg-gradient-to-r ${accent}` : accent}`}
+                  className={`absolute left-1/2 top-5 h-[46px] w-[46px] -translate-x-1/2 rounded-full blur-[25px] opacity-25 ${accent.startsWith("from-") ? `bg-linear-to-r ${accent}` : accent}`}
                 />
               </div>
               <CardContent className="flex flex-col items-center justify-center p-0 w-full">

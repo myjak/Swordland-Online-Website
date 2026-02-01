@@ -48,7 +48,7 @@ export function HeroSection({ stats = STATS }: { stats?: typeof STATS }) {
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center flex flex-col items-center">
         {/* Badge */}
         <div
-          className="mx-auto mb-7 inline-flex items-center gap-2 bg-primary/10 px-5 py-2 border border-primary/15 text-primary font-display text-sm font-semibold tracking-wide"
+          className="mx-auto mb-8 inline-flex items-center gap-2 bg-primary/10 px-6 py-2 text-primary font-display text-base font-semibold tracking-widest border-b-2 border-primary/30 drop-shadow-sm"
           style={{ borderRadius: 0 }}
         >
           <Sparkles className="h-5 w-5 text-primary" />

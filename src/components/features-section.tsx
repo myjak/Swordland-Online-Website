@@ -57,20 +57,12 @@ export function FeaturesSection() {
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/4 h-[340px] w-[340px] -translate-x-1/2 rounded-full bg-primary/10 blur-[90px]" />
         <div className="absolute right-[10%] bottom-1/4 h-[120px] w-[180px] rounded-full bg-card/80 blur-[70px] opacity-30" />
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
-                              linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: "48px 48px",
-          }}
-        />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         {/* Section badge */}
         <div
-          className="mx-auto mb-7 inline-block bg-primary/10 px-5 py-2 text-primary font-display text-sm font-semibold tracking-wide"
+          className="mx-auto mb-8 inline-block bg-primary/10 px-6 py-2 text-primary font-display text-base font-semibold tracking-widest border-b-2 border-primary/30 drop-shadow-sm"
           style={{ borderRadius: 0 }}
         >
           Features

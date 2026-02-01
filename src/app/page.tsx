@@ -18,7 +18,7 @@ export default function Page() {
       <AboutSection />
       <JoinSection />
       <CommunitySection />
-      <GallerySection />
+      {/*<GallerySection />*/}
       <Footer />
     </main>
   );

@@ -12,8 +12,8 @@ const highlights = [
   {
     icon: Gamepad2,
     pill: "Play Instantly",
-    label: "Hytale Native",
-    desc: "No downloads or mods. Jump right in—all inside Hytale.",
+    label: "Vanilla Friendly",
+    desc: "With mods and plugins, we will come closer to the original SAO experience without losing the Hytale feeling and overall experience.",
     accent: "from-green-300 to-sky-400",
   },
   {
@@ -32,14 +32,6 @@ export function AboutSection() {
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/4 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-primary/10 blur-[110px]" />
         <div className="absolute right-[10%] bottom-1/4 h-[180px] w-[320px] rounded-full bg-card/80 blur-[85px] opacity-30" />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
-                              linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
@@ -48,24 +40,25 @@ export function AboutSection() {
           <div>
             {/* Section badge in footer/community style */}
             <div
-              className="mx-auto mb-7 inline-block bg-primary/10 px-5 py-2 text-primary font-display text-sm font-semibold tracking-wide"
+              className="mx-auto mb-8 inline-block bg-primary/10 px-6 py-2 text-primary font-display text-base font-semibold tracking-widest border-b-2 border-primary/30 drop-shadow-sm"
               style={{ borderRadius: 0 }}
             >
               About
             </div>
-            <h2 className="mb-5 font-display text-3xl font-bold tracking-tight text-card md:text-4xl">
-              What is{" "}
+            <h2 className="mb-5 font-display text-2xl font-bold tracking-tight text-card md:text-3xl">
+              WHAT IS{" "}
               <span className="text-primary drop-shadow-sm">
-                Swordland Online?
+                SWORDLAND ONLINE?
               </span>
             </h2>
             <p className="mb-6 max-w-2xl text-balance text-card/70 text-lg">
               Swordland Online is a passion project bringing the world of{" "}
-              <span className="font-semibold text-yellow-400">
+              <span className="font-semibold text-primary-text">
                 Sword Art Online
               </span>{" "}
-              into Hytale. Explore the legendary floating castle of Aincrad –
-              all 100 floors, each with unique monsters and fierce bosses.
+              into Hytale. Explore a brand new floating castle called AinLand –
+              10 Floors instead of the 100 floors from the original Aincrad,
+              compressed but full of life and challenges!
             </p>
             <p className="mb-6 max-w-2xl text-balance text-card/70 text-base">
               Experience our custom skill system: master sword techniques, chain

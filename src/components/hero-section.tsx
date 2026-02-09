@@ -80,7 +80,7 @@ export function HeroSection({ stats = STATS }: { stats?: typeof STATS }) {
             className="w-full sm:w-auto px-6 sm:px-7 md:px-8 py-2 font-bold shadow-primary/30 shadow-lg bg-primary group hover:bg-primary/90 min-h-[44px]"
             style={{ borderRadius: 0 }}
           >
-            <Link href="#community" className="flex items-center justify-center">
+            <Link href="/#community" className="flex items-center justify-center">
               Start Your Adventure
               <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -92,7 +92,7 @@ export function HeroSection({ stats = STATS }: { stats?: typeof STATS }) {
             className="w-full sm:w-auto px-6 sm:px-7 md:px-8 py-2 border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:text-primary font-bold min-h-[44px]"
             style={{ borderRadius: 0 }}
           >
-            <Link href="#features">Learn More</Link>
+            <Link href="/#features">Learn More</Link>
           </Button>
         </div>
 

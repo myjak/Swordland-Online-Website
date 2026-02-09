@@ -66,14 +66,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/logo/SLO-color.png",
-        width: 1200,
-        height: 630,
+        width: 512,
+        height: 512,
         alt: "Swordland Online Logo",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Swordland Online | Hytale SAO Experience",
     description:
       "Enter Aincrad in Hytale. Swordland Online brings Sword Art Online to life with skills, leveling, epic boss fights, and intense PvP combat.",

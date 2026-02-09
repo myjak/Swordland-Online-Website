@@ -29,10 +29,12 @@ export function GalleryLightbox({
   const [imageError, setImageError] = React.useState(false);
 
   React.useEffect(() => {
-    setCurrentIndex(initialIndex);
-    setImageLoaded(false);
-    setImageError(false);
-  }, [initialIndex]);
+    if (open) {
+      setCurrentIndex(initialIndex);
+      setImageLoaded(false);
+      setImageError(false);
+    }
+  }, [open, initialIndex]);
 
   // Preload adjacent images
   React.useEffect(() => {

@@ -4,19 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import { FEATURE_FLAGS } from "@/src/lib/constants";
+import { getNavLinks, FEATURE_FLAGS } from "@/src/lib/constants";
 
-const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#about", label: "About" },
-  { href: "#community", label: "Community" },
-  ...(FEATURE_FLAGS.enableGallery ? [{ href: "#gallery", label: "Gallery" }] : []),
-];
+const navLinks = getNavLinks(FEATURE_FLAGS.enableGallery);
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   // Close menu on ESC key
   useEffect(() => {
@@ -71,7 +67,8 @@ export function Navbar() {
       if (
         isOpen &&
         menuRef.current &&
-        !menuRef.current.contains(e.target as Node)
+        !menuRef.current.contains(e.target as Node) &&
+        !menuButtonRef.current?.contains(e.target as Node)
       ) {
         setIsOpen(false);
       }
@@ -128,6 +125,7 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
+          ref={menuButtonRef}
           type="button"
           className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded border border-primary/20 bg-background/60 shadow-md md:hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary min-w-[44px] min-h-[44px]"
           onClick={() => setIsOpen((v) => !v)}

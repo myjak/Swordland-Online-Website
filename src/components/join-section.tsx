@@ -6,14 +6,12 @@ import { ExternalLink, Server } from "lucide-react";
 import { Separator } from "@/src/components/ui/separator";
 import { Card } from "@/src/components/ui/card";
 import { toast } from "sonner";
-
-// Set the server IP here to easily update it everywhere
-const SERVER_IP = "*********************";
+import { getServerIP, getServerIPForCopy, SERVER_CONFIG } from "@/src/lib/constants";
 
 export function JoinSection() {
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(SERVER_IP);
+      await navigator.clipboard.writeText(getServerIPForCopy());
       toast.success("Server IP copied to clipboard!", {
         description: "You can now paste it into Hytale",
         duration: 3000,
@@ -54,7 +52,7 @@ export function JoinSection() {
               <Server className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary" />
             </div>
             <h3 className="mb-2 font-display text-lg sm:text-xl md:text-2xl font-extrabold text-primary tracking-tight drop-shadow text-center md:text-left break-all sm:break-normal">
-              {SERVER_IP}
+              {getServerIP()}
             </h3>
             <Button
               variant="default"
@@ -67,13 +65,14 @@ export function JoinSection() {
               Connect Now
               <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
-            <p className="text-xs text-emerald-500 font-medium mb-2 text-center md:text-left tracking-wide">
-              <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
-              250+ players online now
-            </p>
+            {SERVER_CONFIG.playerCount && (
+              <p className="text-xs text-emerald-500 font-medium mb-2 text-center md:text-left tracking-wide">
+                <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
+                {SERVER_CONFIG.playerCount} players online now
+              </p>
+            )}
             <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left leading-relaxed">
-              Connect to our official multiplayer server. All custom features
-              included—just hop in!
+              {SERVER_CONFIG.statusMessage}
             </p>
           </div>
 
@@ -110,7 +109,7 @@ export function JoinSection() {
               <li>
                 Add this server address:{" "}
                 <span className="font-semibold text-card-foreground bg-primary/10 rounded px-1 py-0.5 break-all">
-                  {SERVER_IP}
+                  {getServerIP()}
                 </span>
               </li>
               <li>

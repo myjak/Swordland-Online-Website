@@ -11,13 +11,9 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Sword } from "lucide-react";
 import Image from "next/image";
+import { getNavLinks, FEATURE_FLAGS } from "@/src/lib/constants";
 
-const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#about", label: "About" },
-  { href: "#community", label: "Community" },
-  { href: "#gallery", label: "Gallery" },
-];
+const navLinks = getNavLinks(FEATURE_FLAGS.enableGallery);
 
 const iconMap: Record<string, any> = {
   Discord: DiscordIcon,

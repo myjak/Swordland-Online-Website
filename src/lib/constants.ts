@@ -1,23 +1,59 @@
-export const SITE_CONFIG = {
-  name: "Swordland Online",
-  description:
-    "Enter Aincrad in Hytale. Swordland Online brings Sword Art Online to life with skills, leveling, epic boss fights, and intense PvP combat.",
-  url: "https://swordlandonline.com",
-  ogImage: "/logo/SLO-color.png",
-  twitterHandle: "@swordlandonline",
-} as const;
+// ============================================================================
+// NAVIGATION CONFIGURATION
+// ============================================================================
 
 export const NAV_LINKS = [
-  { href: "#features", label: "Features" },
-  { href: "#about", label: "About" },
-  { href: "#community", label: "Community" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "/#features", label: "Features", enabled: true },
+  { href: "/#about", label: "About", enabled: true },
+  { href: "/#community", label: "Community", enabled: true },
+  { href: "/#gallery", label: "Gallery", enabled: false }, // Controlled by FEATURE_FLAGS.enableGallery
 ] as const;
 
+// Get enabled navigation links (excluding gallery which is controlled by feature flag)
+export const getNavLinks = (
+  includeGallery: boolean,
+): Array<{ href: string; label: string }> => {
+  return NAV_LINKS.filter((link) => {
+    if (!link.enabled) return false;
+    // Check if this is the gallery link
+    if ((link.href as string) === "/#gallery") return includeGallery;
+    return true;
+  }).map((link) => ({ href: link.href as string, label: link.label }));
+};
+
+// ============================================================================
+// SERVER CONFIGURATION
+// ============================================================================
+
 export const SERVER_CONFIG = {
-  ip: "play.swordland.online", // Hidden until server is available
-  status: "hidden" as const,
+  // Server IP address (use asterisks to hide: "*********************")
+  ip: "play.swordland.online",
+  // Whether the IP is hidden/obfuscated
+  ipHidden: true,
+  // Display text when IP is hidden (if different from actual IP)
+  ipDisplayText: "*********************",
+  // Player count display (set to null to hide)
+  playerCount: "250+",
+  // Server status message
+  statusMessage:
+    "Connect to our official multiplayer server. All custom features included—just hop in!",
 } as const;
+
+// Get the server IP to display (returns hidden text if ipHidden is true)
+export const getServerIP = () => {
+  return SERVER_CONFIG.ipHidden
+    ? SERVER_CONFIG.ipDisplayText
+    : SERVER_CONFIG.ip;
+};
+
+// Get the actual server IP for copying (returns actual IP even if hidden)
+export const getServerIPForCopy = () => {
+  return SERVER_CONFIG.ip;
+};
+
+// ============================================================================
+// FEATURE FLAGS
+// ============================================================================
 
 export const FEATURE_FLAGS = {
   enableAnalytics: true,
@@ -25,6 +61,10 @@ export const FEATURE_FLAGS = {
   enableAnimations: true,
   enableGallery: false,
 } as const;
+
+// ============================================================================
+// GALLERY CONFIGURATION
+// ============================================================================
 
 export const GALLERY_IMAGES: Array<{ src: string; alt: string }> = [
   {
